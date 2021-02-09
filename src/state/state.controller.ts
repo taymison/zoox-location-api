@@ -6,9 +6,10 @@ import { ObjectID } from 'mongodb';
 import { ParseObjectIdPipe } from '../pipes/parse-object-id.pipe';
 import { State } from './entities/state.entity';
 import { ParseSortArgPipe } from 'src/pipes/parse-sort-arg.pipe';
-import { ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiParam, ApiQuery, ApiResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('State')
+@ApiSecurity('X-Api-Key')
 @Controller('state')
 export class StateController {
   constructor(private readonly stateService: StateService) {}

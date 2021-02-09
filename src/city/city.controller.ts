@@ -6,9 +6,10 @@ import { UpdateCityDto } from './dto/update-city.dto';
 import { ObjectID } from 'mongodb';
 import { ParseSortArgPipe } from 'src/pipes/parse-sort-arg.pipe';
 import { City } from './entities/city.entity';
-import { ApiParam, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiParam, ApiQuery, ApiResponse, ApiSecurity, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('City')
+@ApiSecurity('X-Api-Key')
 @Controller('city')
 export class CityController {
   constructor(private readonly cityService: CityService) {}
