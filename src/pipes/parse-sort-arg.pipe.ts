@@ -2,7 +2,7 @@ import { ArgumentMetadata, BadRequestException, Injectable, PipeTransform } from
 
 @Injectable()
 export class ParseSortArgPipe implements PipeTransform {
-  transform(value: any, metadata: ArgumentMetadata) {
+  transform(value: any) {
     const valueTrimmedUppercased: string = value?.trim()?.toUpperCase();
 
     if (valueTrimmedUppercased && valueTrimmedUppercased !== 'ASC' && valueTrimmedUppercased !== 'DESC') {
