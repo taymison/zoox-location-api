@@ -9,6 +9,8 @@ import * as helmet from 'helmet';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  app.enableCors();
+
   if (process.env.ENV === 'prod') {
     app.use(helmet());
     app.use(
