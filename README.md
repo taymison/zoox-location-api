@@ -62,6 +62,7 @@ This key is defined in the .env file.
 ## Requirements
 
 * Node >= 10.13.0
+* [NestJS CLI](https://docs.nestjs.com/cli/overview)
 
 ## Installation
 
