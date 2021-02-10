@@ -1,30 +1,67 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+<h1 align="center">
+  Zoox Location API
+</h1>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+<p align="center">Unofficial Zoox REST API for registering and editing states and cities</p>
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+REST API developed in NESTJS and using MongoDB as a database for the Zoox Smart Data admission test.
+
+This API has JSON data input and output, validations, error and exception handling, response cache, documentation and key protection.
+
+## Features: Caching
+
+The responses of all GET requests are cached with an in-memory cache strategy.
+
+The TTL of the cache is 5s and after that time, it is invalidated and replaced by the result of the next request.
+
+Redis could have been used to store the application cache, but as it is small and will not have many resources saved, it was not necessary.
+
+However, replacing the in-memory strategy with the use of Redis would not be a very difficult task thanks to the use of NestJS.
+
+## Features: Documentation
+
+All routes and their parameters are documented in the OpenAPI (Swagger) format.
+
+When accessing `http://localhost:3000/api` it is possible to read all the documentation and test the routes with different parameters through the Swagger UI.
+
+Note: before executing the first execution, it is necessary to insert the X-Api-Key by clicking on the "Authorize" button. And between each request of the same route, it is necessary to click on the "Clean" button to clear the result, otherwise Swagger UI will repeat the result of the previous route.
+
+
+## Features: Configuration
+
+The application is configured through an .env file. Here is an example of the required keys:
+
+```
+API_KEY=
+
+DB_STRING_CONN=
+
+ENV=
+```
+
+The ENV key can be defined as dev or prod, if it is defined as dev, the security settings will be disabled and the API will accept requests from hosts without https.
+
+Always use `dev` in a development environment.
+
+The API_KEY key defines the value of the required X-Api-Key in the header of all requests.
+
+The DB_STRING_CONN key defines the connection string to MongoDB. If you would like to use my database, please contact me.
+
+## Features: Testing
+
+The application uses as a test framework, the Jest library and some unit tests were created to exemplify its operation.
+
+## Features: Security
+
+To increase the security of the application, the use of a mandatory X-Api-Key in the header of each request was implemented.
+
+This key is defined in the .env file.
+
+## Requirements
+
+* Node >= 10.13.0
 
 ## Installation
 
@@ -35,39 +72,15 @@ $ npm install
 ## Running the app
 
 ```bash
-# development
 $ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
 ```
 
-## Test
+## Accessing the docs
+
+After starting the application, access the documentation in your browser: `http://localhost:3000/api`
+
+## Testing
 
 ```bash
-# unit tests
 $ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
 ```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
